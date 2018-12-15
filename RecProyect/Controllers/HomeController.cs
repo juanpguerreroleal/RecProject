@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecProyect.Models;
 
@@ -14,17 +15,17 @@ namespace RecProyect.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "RecProject es un sistema de recomendacion de sitios turisticos desarrollado con ASP.NET y C#";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Contacto";
 
             return View();
         }
