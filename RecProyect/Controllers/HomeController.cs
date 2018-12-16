@@ -15,14 +15,12 @@ namespace RecProyect.Controllers
         {
             return View();
         }
-        [Authorize]
         public IActionResult About()
         {
             ViewData["Message"] = "RecProject es un sistema de recomendacion de sitios turisticos desarrollado con ASP.NET y C#";
 
             return View();
         }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Contacto";
