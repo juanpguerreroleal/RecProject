@@ -1,0 +1,48 @@
+﻿@model RecProyect.Models.Place
+@{
+    ViewData["Title"] = "Add";
+}
+
+<br/>
+<h2>Agregar un sitio visitado</h2>
+<hr />
+<form asp-action="Add">
+    <div class="row form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-1">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="Name" />
+                </div>
+                <div class="col-sm-1">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="Description" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label asp-for="Historical"></label>
+                    <input asp-for="Historical" type="range" class="form-control-range"/>
+                </div>
+                <div class="col-sm-4">
+                    <label asp-for="Touristic"></label>
+                    <input asp-for="Touristic" type="range" class="form-control-range" />
+                </div>
+                <div class="col-sm-4">
+                    <label asp-for="Recreative"></label>
+                    <input asp-for="Recreative" type="range" class="form-control-range" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Agregar" class="btn btn-sm btn-primary" />
+                <input type="submit" asp-action="Index" value="Regresar al menu" class="btn btn-sm btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecProyect.Data;
+using RecProyect.Models;
 
 namespace RecProyect.Controllers
 {
@@ -18,7 +19,7 @@ namespace RecProyect.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            return View();
+            return View(_db.Places.ToList());
         }
         protected override void Dispose(bool disposing)
         {
@@ -26,6 +27,24 @@ namespace RecProyect.Controllers
             {
                 _db.Dispose();
             }
+        }
+        //Get : Place/Create
+        [Authorize]
+        public IActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(Place place)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Add(place);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(place);
         }
     }
 }

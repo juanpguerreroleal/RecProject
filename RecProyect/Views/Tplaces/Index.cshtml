@@ -1,8 +1,7 @@
-﻿
+﻿@model IEnumerable<RecProyect.Models.Place>
 @{
     ViewData["Title"] = "Index";
 }
-
 
 <div class="row table-bordered text-center" style="padding: 10px;">
     <h2 class="col-lg-12">Top 10 de lugares turisticos que encajan con tu perfil.</h2>
@@ -16,28 +15,53 @@
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <h4>Descripcion ejemplo</h4>
-
         </div>
     </div>
 </div>
-<div class="row table-bordered text-center">
-    <aside class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <h4>Agregar un sitio visitado</h4>
-        <input class="btn btn-block btn-sm btn-primary" value="Agregar" />
+<div class="row form-border">
+    <aside class="col-lg-4 col-md-4 col-sm-4 col-xs-12 table-bordered text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h4>Agregar un sitio visitado</h4>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <a asp-action="Add" class="btn btn-sm btn-primary">Agregar</a>
+        </div>
     </aside>
     <article class="col-lg-8 col-md-8 col-sm-8 col-xs-12 table-bordered">
         <h3>Sitios que ya he visitado</h3>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12"><h4>Nombre visitado</h4></div>
-            <div class="col-lg-5 col-md-5 col-sm-12"><h4>Descripcion visitado</h4></div>
-            <div class="col-lg-4 col-md-4 col-sm-12 btn-group">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input class="btn btn-block btn-danger btn-sm" value="Eliminar" />
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input class="btn btn-block btn-primary btn-sm" value="Editar" />
-                </div>
-            </div>
-        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    <h4>Nombre</h4>
+                </th>
+                <th>
+                    <h4>Descripcion</h4>
+                </th>
+                <th>
+                    <h4>Opciones</h4>
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(m => item.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(m => item.Description)
+                    </th>
+                    <th>
+                        <div class="col-lg-4 col-md-4 col-sm-12 btn-group">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-default btn-sm" value="Eliminar"></a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm btn-default" value="Editar"></a>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            }
+        </table>
     </article>
 </div>
