@@ -1,0 +1,27 @@
+﻿@model RecProyect.Models.Place
+@{
+    ViewData["Title"] = "Delete";
+}
+<br />
+<h2>Eliminar lugar</h2>
+<hr />
+<form asp-action="Delete">
+    <div class="row form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-1">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="Name" disabled/>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" asp-action="Delete" asp-route-id="@Model.Id" value="Eliminar" class="btn btn-sm btn-danger" />
+                <input type="submit" asp-action="Index" value="Regresar al menu" class="btn btn-sm btn-success" />
+            </div>
+        </div>
+    </div>
+</form>

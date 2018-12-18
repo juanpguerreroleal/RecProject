@@ -1,0 +1,33 @@
+﻿@model RecProyect.Models.Place
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Editar lugar</h2>
+
+<form asp-action="Edit">
+    <div class="row form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input asp-for="Name" />
+                </div>
+                <div class="col-sm-2">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input asp-for="Description" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" asp-action="Edit" asp-route-id="@Model.Id" value="Editar" class="btn btn-sm btn-secondary" />
+                <input type="submit" asp-action="Index" value="Regresar al menu" class="btn btn-sm btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
