@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RecProyect.Data;
@@ -13,6 +15,8 @@ namespace RecProyect.Controllers
     public class TplacesController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly UserManager<IdentityUser> _userManager;
+
         public TplacesController(ApplicationDbContext db)
         {
             _db = db;
@@ -43,6 +47,14 @@ namespace RecProyect.Controllers
             {
                 _db.Add(place);
                 await _db.SaveChangesAsync();
+                UserPlace userPlace = new UserPlace()
+                {
+                    Place = place,
+                    PlaceFK = place.Id,
+                    User = await _userManager.GetUserAsync(User),
+                    UserFK = _userManager.GetUserId(User)
+                };
+                _db.Add(userPlace);
                 return RedirectToAction(nameof(Index));
             }
             return View(place);

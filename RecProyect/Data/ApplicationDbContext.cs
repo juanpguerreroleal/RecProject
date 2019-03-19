@@ -14,5 +14,6 @@ namespace RecProyect.Data
         {
         }
         public DbSet<Place> Places { get; set; }
+        public DbSet<UserPlace> UserPlaces { get; set; }
     }
 }

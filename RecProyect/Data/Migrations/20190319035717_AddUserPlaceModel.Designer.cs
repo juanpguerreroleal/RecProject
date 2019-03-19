@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecProyect.Data;
 
 namespace RecProyect.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190319035717_AddUserPlaceModel")]
+    partial class AddUserPlaceModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,30 +209,6 @@ namespace RecProyect.Data.Migrations
                     b.ToTable("Places");
                 });
 
-            modelBuilder.Entity("RecProyect.Models.UserPlace", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PlaceFK");
-
-                    b.Property<int>("PlaceId");
-
-                    b.Property<string>("UserFK")
-                        .IsRequired();
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlaceId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserPlaces");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -274,18 +252,6 @@ namespace RecProyect.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RecProyect.Models.UserPlace", b =>
-                {
-                    b.HasOne("RecProyect.Models.Place", "Place")
-                        .WithMany()
-                        .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
